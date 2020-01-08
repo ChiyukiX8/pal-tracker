@@ -10,6 +10,12 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+<<<<<<< HEAD
+=======
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.postgresql:postgresql'
+>>>>>>> c1d3eb0... Persist time entries in database
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -27,9 +33,14 @@ bootRun.environment([
         "MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
         "MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
         "MANAGEMENT_HEALTH_PROBES_ENABLED": true,
+<<<<<<< HEAD
         "MANAGEMENT_ENDPOINT_HEALTH_GROUP_CUSTOM_INCLUDE": "BackingServiceHealthIndicator",
         "MANAGEMENT_ENDPOINT_HEALTH_GROUP_READINESS_INCLUDE": "backingService",
         "SPRING_DATASOURCE_URL": "jdbc:postgresql://localhost:5432/tracker_dev?user=tracker&password=password",
+=======
+        "MANAGEMENT_ENDPOINT_HEALTH_GROUP_READINESS_INCLUDE": "backingService",
+        "SPRING_DATASOURCE_URL": "jdbc:postgresql://localhost:5432/tracker_dev?user=tracker&password=password"
+>>>>>>> c1d3eb0... Persist time entries in database
 ])
 
 test.environment([
@@ -37,7 +48,10 @@ test.environment([
         "MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
         "MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
         "MANAGEMENT_HEALTH_PROBES_ENABLED": true,
+<<<<<<< HEAD
         "MANAGEMENT_ENDPOINT_HEALTH_GROUP_CUSTOM_INCLUDE": "BackingServiceHealthIndicator",
+=======
+>>>>>>> c1d3eb0... Persist time entries in database
         "SPRING_DATASOURCE_URL": "jdbc:postgresql://localhost:5432/tracker_test?user=tracker&password=password",
 ])
 
