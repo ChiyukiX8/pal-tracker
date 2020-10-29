@@ -55,7 +55,7 @@ jobs:
   - get: version
     passed:
     - build-pack-and-publish
-- task: deploy-to-review
+  - task: deploy-to-review
     config:
       platform: linux
       image_resource:
@@ -65,6 +65,8 @@ jobs:
       inputs:
       - name: source-code
       - name: version
+      run:
+        path: sh
         args:
           - -exc
           - |
@@ -73,21 +75,22 @@ jobs:
 
             BUILD_NUMBER=`cat version/number`
 
-            grep "concourse.run_number" source-code/k8s/environments/review/deployment.yaml
-            sed -i "s/concourse.run_number/${BUILD_NUMBER}/g" source-code/k8s/environments/review/deployment.yaml
-            kubectl apply -k source-code/k8s/environments/review
+            cd source-code
+            grep "concourse.run_number" k8s/environments/review/deployment.yaml
+            sed -i "s/concourse.run_number/${BUILD_NUMBER}/g" k8s/environments/review/deployment.yaml
+            kubectl apply -k k8s/environments/review
 resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/((GITHUB_USERNAME))/pal-tracker-k8s.git
+    uri: https://github.com/((GITHUB_USERNAME))/pal-tracker.git
     branch: master
 - name: version
   type: semver
   source:
     initial_version: "0.0.1"
     driver: git
-    uri: https://github.com/((GITHUB_USERNAME))/pal-tracker-k8s.git
+    uri: https://github.com/((GITHUB_USERNAME))/pal-tracker.git
     branch: build
     file: number
     username: ((GITHUB_USERNAME))
