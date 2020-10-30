@@ -4,3 +4,4 @@ metadata:
   name: pal-tracker
 data:
   welcome.message: "hello from development"
+  SPRING_DATASOURCE_HIKARI_MAXIMUMPOOLSIZE: "1"
